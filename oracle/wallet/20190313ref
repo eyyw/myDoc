@@ -1,0 +1,142 @@
+REF:https://qiita.com/sowd/items/a2d4a27753d394521ec0
+
+
+wallet設定手順
+1.確認
+
+データベースがオープンしていることを確認
+
+
+SQL> select status from v$instance;
+
+STATUS
+------------------------------------
+OPEN
+
+
+
+walletが設定されていないことを確認
+
+
+SQL> select * from v$encryption_wallet;
+
+WRL_TYPE   WRL_PARAMETER                            STATUS
+---------- ---------------------------------------- --------------------
+file       /u01/app/oracle/admin/TEST01/wallet       CLOSED
+
+
+
+
+2.マスターキー作成
+
+マスターキーを配置するディレクトリの作成
+
+
+$ mkdir -p $ORACLE_BASE/wallet
+$ ll -d $ORACLE_BASE/wallet
+
+
+sqlnet.oraにENCRYPTION_WALLET_LOCATIONを設定
+
+
+$ vi $ORACLE_HOME/network/admin/sqlnet.ora
+
+
+以下を追記
+
+
+# $ORACLE_BASE=/u01/app/oracleとした場合
+ENCRYPTION_WALLET_LOCATION=(SOURCE=(METHOD=FILE)(METHOD_DATA=(DIRECTORY=/u01/app/oracle/wallet)))
+
+
+リスナーの起動 or 再起動
+
+
+$ lsnrctl start
+   or
+$ lsnrctl reload
+
+
+マスターキーを作成
+
+
+SQL> alter system set encryption key identified by "wallet_pass";
+
+システムが変更されました。
+
+SQL> !ls /u01/app/oracle/wallet
+ewallet.p12
+
+SQL> select * from v$encryption_wallet;
+
+WRL_TYPE   WRL_PARAMETER                  STATUS
+---------- ------------------------------ ----------
+file       /u01/app/oracle/wallet         OPEN
+
+
+
+
+3.walletのオープン・クローズ
+
+オープン
+
+
+SQL> ALTER SYSTEM SET ENCRYPTION WALLET OPEN IDENTIFIED BY "wallet_pass";
+
+システムが変更されました。
+
+SQL> select * from v$encryption_wallet;
+
+WRL_TYPE   WRL_PARAMETER                  STATUS
+---------- ------------------------------ ----------
+file       /u01/app/oracle/wallet         OPEN
+
+
+
+クローズ
+
+
+SQL> ALTER SYSTEM SET ENCRYPTION WALLET CLOSE IDENTIFIED BY "wallet_pass";
+
+システムが変更されました。
+
+SQL> select * from v$encryption_wallet;
+
+WRL_TYPE   WRL_PARAMETER                  STATUS
+---------- ------------------------------ ----------
+file       /u01/app/oracle/wallet         CLOSED
+
+
+
+
+
+walletオープンの自動化設定
+1.自動化の設定
+
+
+$ ls $ORACLE_BASE/wallet
+ewallet.p12
+$ orapki wallet create -wallet $ORACLE_BASE/wallet -pwd "wallet_pass" -auto_login
+$ ls $ORACLE_BASE/wallet
+cwallet.sso  ewallet.p12
+
+
+
+2.確認
+
+
+ SQL> select * from v$encryption_wallet;
+
+ WRL_TYPE   WRL_PARAMETER                  STATUS
+ ---------- ------------------------------ ----------
+ file       /u01/app/oracle/wallet         OPEN
+
+ SQL> shutdown immediate
+ SQL> startup
+
+ SQL> select * from v$encryption_wallet;
+
+ WRL_TYPE   WRL_PARAMETER                  STATUS
+ ---------- ------------------------------ ----------
+ file       /u01/app/oracle/wallet         OPEN
+
