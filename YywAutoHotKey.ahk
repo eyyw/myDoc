@@ -121,65 +121,34 @@ vk1C & D::MouseMove, 220, 0, 0, R
 
 ;Ctrl + Shift + C
 ^+C::
-Run, "C:\WINDOWS\system32\notepad.exe"
+if WinExist("無題 - メモ帳")
+    WinActivate
+else
+    Run, "C:\WINDOWS\system32\notepad.exe"
 Return
 
-; Shift + Alt + A
-;!+A::
-;Run, "C:\Program Files (x86)\PuTTY\putty.exe" -load 仕訳/財務APサーバ -l intra_admin
-;Return
-
-; Shift + Alt + D
-!+D::
-Run, "C:\Program Files (x86)\PuTTY\putty.exe" -load 仕訳単体DB -l intra_admin
+; Ctrl + Shift + E
+^+E::
+if WinExist("(無題)1 - sakura 2.2.0.1")
+    WinActivate
+else
+    Run, C:\Program Files (x86)\sakura\sakura.exe
 Return
 
-; Shift + Alt + E
-; edit_autohotkeyという名前でよく使うエディタのショートカットを作っておく
-; ショートカットの引数としてAutoHotKey.ahkの絶対パスを渡す（パスを渡せるエディタであれば）
-; ショートカットはPathが通った場所に置いておく
-; メモ帳でいいならホットキーは"Edit"でいいr
-!+E::
-Run, C:\Program Files (x86)\sakura\sakura.exe
-Return
 
+;Ctrl + Shift + Q
+^+Q::
+Run, "C:\yyw\300_software\sqldeveloperX64\sqldeveloper.exe"
+Return
 
 ;------------------------------------------------------------------------------
 ;  第５弾 YYW関連　IE
 ;------------------------------------------------------------------------------
-; Shift + Alt + S
-!+S::
-if (not WinExist("ahk_class PuTTY"))
-{
-    Run, "C:\Program Files (x86)\PuTTY\putty.exe" -load 仕訳/財務APサーバ -l intra_admin
-    sleep, 1000
-}
-Run,"C:\Program Files\internet explorer\iexplore.exe" http://skfinebap1p.aws.co.jp:8010/OA_HTML/AppsLocalLogin.jsp -private
-sleep, 3000
-Send XXAE_SETUP{Tab}XXAE_SETUP{Tab}{Enter}
+; Shift + Alt + M
+!+M::
+;Run,"C:\Program Files\internet explorer\iexplore.exe" https://26.131.131.11/ -private
+Run, https://26.131.131.11/
 return
-
-
-; Shift + Alt + A
-!+A::
-if (not WinExist("ahk_class PuTTY"))
-{
-    Run, "C:\Program Files (x86)\PuTTY\putty.exe" -load 仕訳/財務APサーバ -l intra_admin
-    sleep, 1000
-}
-Run,"C:\Program Files\internet explorer\iexplore.exe" http://skfinebap1p.aws.co.jp:8010/OA_HTML/AppsLocalLogin.jsp -private
-sleep, 3000
-Send XXAE_WFAPRV{Tab}XXAE_WFAPRV{Tab}{Enter}
-return
-
-
-;------------------------------------------------------------------------------
-;  第６弾 YYW関連　入力
-;------------------------------------------------------------------------------
-;:*:btw::by the way {Tab} bbb {Enter}  ; Replaces "btw" with "by the way" without needing an ending character.
-::-sf::SELECT if.* {Enter}FROM XXAE_CARD_ACCTG_LOG_IF if {Enter}WHERE if.RECV_DATE = '' {Enter}AND if.RESERVE_CTRL2 = '';  
-
-
 
 
 vk1D & g::                                      ;Win+Gキーに割り当て
@@ -191,40 +160,133 @@ Run,https://translate.google.co.jp/?hl=ja&text=%Clipboard%  ;クリップボー�
 Clipboard = %ClipSaved%                                ;バックアップした内容を書き戻し
 return
 
+;------------------------------------------------------------------------------
+;  第６弾 YYW関連　入力
+;------------------------------------------------------------------------------
+;:*:btw::by the way {Tab} bbb {Enter}  ; Replaces "btw" with "by the way" without needing an ending character.
+::-sf::SELECT if.* {Enter}FROM XXAE_CARD_ACCTG_LOG_IF if {Enter}WHERE if.RECV_DATE = '' {Enter}AND if.RESERVE_CTRL2 = '';  
 
-:*:!sd::  ; 此热字串通过后面的命令把 "!sd" 替换成当前日期和时间.
+
+:*:@wk::
+Run, "C:\yyw\500_Person\500_work"
+return
+
+:*:@cyw::
+Run, "C:\yyw"
+return
+
+
+:*:!sd::
 ;FormatTime, CurrentDateTime,, yyyy/MM/dd hh:mm:ss
 FormatTime, CurrentDate,, yyyy/MM/dd
 SendInput %CurrentDate%
 return
 
+:*:!bsd:: 
+FormatTime, CurrentDate,, yyyy/MM/dd
+SendInput _bk%CurrentDate%
+return
+
+
 :*:!yyw::
 SendInput TIS楊
 return
 
-:*:!log::
-SendInput FND_FILE.PUT_LINE(FND_FILE.OUTPUT, 'errSQL= ' || );
+:*:!plg::
+SendInput DBMS_OUTPUT.PUT_LINE('Sqlerrm.......' || SQLERRM);
 return
 
-:*:!err::
-value := RegExReplace(clipboard, "[`r`n`t]+$")
 
+:*:!kuro::
+SendInput TIKK68559{Tab}
+Sleep, 1000
+SendInput Welcome1{Tab}
+return
+
+:*:!psm::
+SendInput you.ai{Tab}password1{Tab}
+return
+
+:*:!pst::
+SendInput TISK169{Tab}TISK169{Tab}
+return
+
+:*:!psv::
+value := RegExReplace(clipboard, "[`r`n`t]+$")
 if value =
-{ 
-SendInput --X.X.XXXテスト用ソース add start %A_YEAR%/%A_MM%/%A_DD% by yyw{Enter}lv_retcode := xxfnd_constant_pkg.cv_error;{Enter}--X.X.XXXテスト用ソース add end   %A_YEAR%/%A_MM%/%A_DD% by yyw{Enter}
+{
+    SendInput PJ131_182_bp{Tab}PJ131_182_bps{Tab}
 }
 else
 {
-SendInput --%Clipboard%テスト用ソース add start %A_YEAR%/%A_MM%/%A_DD% by yyw{Enter}lv_retcode := xxfnd_constant_pkg.cv_error;{Enter}--%Clipboard%テスト用ソース add end   %A_YEAR%/%A_MM%/%A_DD% by yyw{Enter}
+    SendInput PJ131_182_bp{Tab}PJ131_182_bps%Clipboard%{Tab}
 }
 return
 
-:*:!rw::
-SendInput 31_記述ミス{Tab}35_単純ミス・確認不足{Tab}03_内部設計{Tab}01_単一機能に影響{Tab}01_要{Tab}ご指摘通りにソースを移動しました。{Tab}2018/10/10{Tab}2018/10/10{Tab}TIS楊{Enter}
+:*:!csvn::
+value := RegExReplace(clipboard, "[`r`n`t]+$")
+if value =
+{
+    SendInput [機能修正]XXXXXXXXの追加{Enter}{Enter}XXXXにXXのXXXXを追加しました。{Tab}
+}
+else
+{
+    SendInput [機能修正]%Clipboard%の追加{Enter}{Enter}XXXXに%Clipboard%を追加しました。{Tab}
+}
 return
 
-:*:!sf::
-SendInput 会計{Tab}フォルダ{Tab}【自動仕訳】セットアップシート_開発部Rv依頼{Tab}TIS石井{Tab}MUN大平様、小澤様、石川様{Tab}以下の領域のセットアップシートを送付いたします。
+
+
+
+;------------------------------------------------------------------------------
+;  第７弾 YYW関連　文字列の置き換え
+;------------------------------------------------------------------------------
+
+
+
+;無変換 + F
+vk1D & F::
+
+strReplaceFrom := "AA"
+strReplaceTo   := ""
+
+empty          := 
+blDelSpace     := false
+blDelTab       := true
+blDelEnter     := true
+
+ClipSaved = %ClipboardAll%                      ;クリップボードの内容をバックアップ
+Clipboard =                                     ;クリップボードをクリア
+Send,^c                                         ;Ctrl+Cキーを送信
+ClipWait 1                                      ;クリップボードにテキストが格納されるまで待機
+if (ErrorLevel)  ; ClipWait timed out.
+{
+    msgbox ClipWait timed out.
+    return
+}
+
+if (blDelSpace)
+{
+    Clipboard := RegExReplace(Clipboard, A_Space, %empty%) 
+}
+if (blDelTab)
+{
+    Clipboard := RegExReplace(Clipboard, A_Tab, %empty%) 
+}
+if (blDelEnter)
+{
+    Clipboard := RegExReplace(Clipboard, "\r\n", %empty%) 
+}
+
+;Clipboard := RegExReplace(Clipboard, %strReplaceFrom%, %strReplaceTo%)
+
+; クリップボード内のテキスト'ABC'を'DEF'に置換し、プレーンテキストに変換する
+StringReplace, clipboard, clipboard, %strReplaceFrom%, %strReplaceTo% , All
+
+
+SendInput %Clipboard%
+Clipboard = %ClipSaved%                          ;バックアップした内容を書き戻し
+
 return
 
 
@@ -232,7 +294,6 @@ return
 ;------------------------------------------------------------------------------
 ;  第７弾 YYW関連　テストエリア
 ;------------------------------------------------------------------------------
-
 
 
 vk1D & 1::
@@ -253,7 +314,7 @@ ClipSaved = %ClipboardAll%                      ;クリップボードの内容�
 Clipboard =                                     ;クリップボードをクリア
 Send,^c                                         ;Ctrl+Cキーを送信
 ClipWait                                        ;クリップボードにテキストが格納されるまで待機
-;StringReplace, clipboard, clipboard, ABC, DEF, All   ; 把剪贴板中所有 ABC 替换为 DEF (同时把剪贴板的内容转换为纯文本)
+;StringReplace, clipboard, clipboard, ABC, DEF, All   ; 把剪?板中所有 ABC 替?? DEF (同?把剪?板的内容????文本)
 clipboard := RegExReplace(clipboard, "ABC", "DEF") 
 msgbox, %clipboard%
 Clipboard = %ClipSaved%                                ;バックアップした内容を書き戻し
