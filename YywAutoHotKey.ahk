@@ -6,122 +6,122 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ;------------------------------------------------------------------------------
-;  å‰æï¼š
-;    Change Keyä½¿ç”¨
-;      Caps Lock -> å·¦Ctrl
-;      å³Alt -> Caps Lock
-;    Google IMEä½¿ç”¨
-;      å¤‰æ›ã‚­ãƒ¼ = IMEã‚ªãƒ³
-;      ç„¡å¤‰æ›ã‚­ãƒ¼ = IMEã‚ªãƒ•
-;  åŸºæœ¬æ–¹é‡ï¼š
-;    ãƒ»åŠ¹ç‡åŒ–ã®ãŸã‚ã®ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆãªã®ã«ã€ç¿’å¾—ã‚³ã‚¹ãƒˆãŒå¤§ãã„ã¨æœ¬æœ«è»¢å€’
-;    ãƒ»ã—ãŸãŒã£ã¦é–¢é€£ä»˜ã‘ã§è¦šãˆã‚„ã™ã„ï¼æ€ã„å‡ºã—ã‚„ã™ã„ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã«ã™ã‚‹
-;  ä½¿ã„æ–¹ï¼š
-;     æœ€åˆã«ç¬¬ï¼‘å¼¾ã‚’æœ‰åŠ¹ã«ã—ã¦ä½¿ã£ã¦ã¿ã‚‹
-;     ã™ãã«æ€ã„å‡ºã›ã‚‹ãã‚‰ã„ä½¿ã„ã“ãªã›ã‚‹ã‚ˆã†ã«ãªã£ãŸã‚‰ç¬¬ï¼’å¼¾ä»¥é™ã‚’ä½¿ã£ã¦ã¿ã‚‹
-;  å‚è€ƒï¼š
+;  ‘O’ñF
+;    Change Keyg—p
+;      Caps Lock -> ¶Ctrl
+;      ‰EAlt -> Caps Lock
+;    Google IMEg—p
+;      •ÏŠ·ƒL[ = IMEƒIƒ“
+;      –³•ÏŠ·ƒL[ = IMEƒIƒt
+;  Šî–{•ûjF
+;    EŒø—¦‰»‚Ì‚½‚ß‚ÌƒVƒ‡[ƒgƒJƒbƒg‚È‚Ì‚ÉAK“¾ƒRƒXƒg‚ª‘å‚«‚¢‚Æ–{––“]“|
+;    E‚µ‚½‚ª‚Á‚ÄŠÖ˜A•t‚¯‚ÅŠo‚¦‚â‚·‚¢^v‚¢o‚µ‚â‚·‚¢ƒVƒ‡[ƒgƒJƒbƒg‚É‚·‚é
+;  g‚¢•ûF
+;     Å‰‚É‘æ‚P’e‚ğ—LŒø‚É‚µ‚Äg‚Á‚Ä‚İ‚é
+;     ‚·‚®‚Év‚¢o‚¹‚é‚­‚ç‚¢g‚¢‚±‚È‚¹‚é‚æ‚¤‚É‚È‚Á‚½‚ç‘æ‚Q’eˆÈ~‚ğg‚Á‚Ä‚İ‚é
+;  QlF
 ;    https://gist.github.com/kondei/87b5f783a6f84a653790
 ;    http://pheromone.hatenablog.com/entry/20130603/1370276768
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼‘å¼¾ ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•é–¢é€£
+;  ‘æ‚P’e ƒJ[ƒ\ƒ‹ˆÚ“®ŠÖ˜A
 ;------------------------------------------------------------------------------
 
-; ã¯ã˜ã‚ã«
-vk1D::return                  ;ç„¡å¤‰æ›å˜ç‹¬ã¯ãã®ã¾ã¾ç´ é€šã—
-vk1C::return                  ;å¤‰æ›å˜ç‹¬ã¯ãã®ã¾ã¾ç´ é€šã—
+; ‚Í‚¶‚ß‚É
+vk1D::return                  ;–³•ÏŠ·’P“Æ‚Í‚»‚Ì‚Ü‚Ü‘f’Ê‚µ
+vk1C::return                  ;•ÏŠ·’P“Æ‚Í‚»‚Ì‚Ü‚Ü‘f’Ê‚µ
 
-; DanceDanceRevolutionã¨çŸ¢å°ã®ä¸¦ã³ãŒåŒã˜ã£ã¦è¨€ã‚ã‚Œã¦ä¸€ç¬ã§è¦šãˆãŸ
-; Vimã‚¨ãƒ‡ã‚£ã‚¿æ´¾ç”Ÿã ã‘ã©ä»–ã®ã‚¢ãƒ—ãƒªã§ã‚‚ã‚ˆãä½¿ã‚ã‚Œã¦ã‚‹ã®ã§æµç”¨ã—ã‚„ã™ã„
-vk1D & H::Send,{Blind}{Left}   ;ç„¡å¤‰æ› + H = å·¦ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1D & J::Send,{Blind}{Down}   ;ç„¡å¤‰æ› + J = ä¸‹ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1D & K::Send,{Blind}{Up}     ;ç„¡å¤‰æ› + K = ä¸Šã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1D & L::Send,{Blind}{Right}  ;ç„¡å¤‰æ› + L = å³ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
+; DanceDanceRevolution‚Æ–îˆó‚Ì•À‚Ñ‚ª“¯‚¶‚Á‚ÄŒ¾‚í‚ê‚Äˆêu‚ÅŠo‚¦‚½
+; VimƒGƒfƒBƒ^”h¶‚¾‚¯‚Ç‘¼‚ÌƒAƒvƒŠ‚Å‚à‚æ‚­g‚í‚ê‚Ä‚é‚Ì‚Å—¬—p‚µ‚â‚·‚¢
+vk1D & H::Send,{Blind}{Left}   ;–³•ÏŠ· + H = ¶ƒJ[ƒ\ƒ‹ƒL[
+vk1D & J::Send,{Blind}{Down}   ;–³•ÏŠ· + J = ‰ºƒJ[ƒ\ƒ‹ƒL[
+vk1D & K::Send,{Blind}{Up}     ;–³•ÏŠ· + K = ãƒJ[ƒ\ƒ‹ƒL[
+vk1D & L::Send,{Blind}{Right}  ;–³•ÏŠ· + L = ‰EƒJ[ƒ\ƒ‹ƒL[
 
-vk1C & H::Send,{Blind}{Left}   ;å¤‰æ›å˜ç‹¬ + H = å·¦ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1C & J::Send,{Blind}{Down}   ;å¤‰æ›å˜ç‹¬ + J = ä¸‹ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1C & K::Send,{Blind}{Up}     ;å¤‰æ›å˜ç‹¬ + K = ä¸Šã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
-vk1C & L::Send,{Blind}{Right}  ;å¤‰æ›å˜ç‹¬ + L = å³ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼
+vk1C & H::Send,{Blind}{Left}   ;•ÏŠ·’P“Æ + H = ¶ƒJ[ƒ\ƒ‹ƒL[
+vk1C & J::Send,{Blind}{Down}   ;•ÏŠ·’P“Æ + J = ‰ºƒJ[ƒ\ƒ‹ƒL[
+vk1C & K::Send,{Blind}{Up}     ;•ÏŠ·’P“Æ + K = ãƒJ[ƒ\ƒ‹ƒL[
+vk1C & L::Send,{Blind}{Right}  ;•ÏŠ·’P“Æ + L = ‰EƒJ[ƒ\ƒ‹ƒL[
 
-; å†…ï¼ˆUchiï¼‰å´ã®ç«¯,å¤–å´ï¼ˆOutï¼‰ã®ç«¯ã«ç§»å‹•ã™ã‚‹ã€ã¨è¦šãˆã‚‹
-; Homeã¯æœ€åˆIã«å‰²ã‚Šå½“ã¦ã¦ã„ãŸãŒUã®æ–¹ãŒæ‰“ã¡ã‚„ã™ã„ã®ã§å¤‰æ›´
-vk1D & U::Send,{Blind}{Home}   ;ç„¡å¤‰æ› + U = Home
-vk1D & O::Send,{Blind}{End}    ;ç„¡å¤‰æ› + O = End
-vk1D & I::Send,{Blind}{PgUp}   ;ç„¡å¤‰æ› + I = PgUp
-vk1D & P::Send,{Blind}{PgDn}   ;ç„¡å¤‰æ› + P = PgDn
+; “àiUchij‘¤‚Ì’[,ŠO‘¤iOutj‚Ì’[‚ÉˆÚ“®‚·‚éA‚ÆŠo‚¦‚é
+; Home‚ÍÅ‰I‚ÉŠ„‚è“–‚Ä‚Ä‚¢‚½‚ªU‚Ì•û‚ª‘Å‚¿‚â‚·‚¢‚Ì‚Å•ÏX
+vk1D & U::Send,{Blind}{Home}   ;–³•ÏŠ· + U = Home
+vk1D & O::Send,{Blind}{End}    ;–³•ÏŠ· + O = End
+vk1D & I::Send,{Blind}{PgUp}   ;–³•ÏŠ· + I = PgUp
+vk1D & P::Send,{Blind}{PgDn}   ;–³•ÏŠ· + P = PgDn
 
-vk1C & U::Send,{Blind}{Home}   ;å¤‰æ›å˜ç‹¬ + U = Home
-vk1C & O::Send,{Blind}{End}    ;å¤‰æ›å˜ç‹¬ + O = End
-vk1C & I::Send,{Blind}{PgUp}   ;å¤‰æ›å˜ç‹¬ + I = PgUp
-vk1C & P::Send,{Blind}{PgDn}   ;å¤‰æ›å˜ç‹¬ + P = PgDn
+vk1C & U::Send,{Blind}{Home}   ;•ÏŠ·’P“Æ + U = Home
+vk1C & O::Send,{Blind}{End}    ;•ÏŠ·’P“Æ + O = End
+vk1C & I::Send,{Blind}{PgUp}   ;•ÏŠ·’P“Æ + I = PgUp
+vk1C & P::Send,{Blind}{PgDn}   ;•ÏŠ·’P“Æ + P = PgDn
 
-
-;------------------------------------------------------------------------------
-;  ç¬¬ï¼’å¼¾ æ–‡å­—åˆ—æ“ä½œé–¢é€£
-;------------------------------------------------------------------------------
-
-; BSã¨ã‹Delã‚’å‰²ã‚Šå½“ã¦ã¦ã„ãŸãŒã‚ã‚“ã¾ã‚Šä½¿ã‚ãªã‹ã£ãŸã®ã§ä¸€æ—¦å‰Šé™¤ã€‚
-; ãã®å†…å¾©æ´»ã•ã›ã‚‹ã‹ã‚‚
-
-; \ãŒæ‰“ã¡ãŸã„ã¨ãã¯å³ä¸Šã‚’ä½¿ã†
-; ã‚¹ãƒãƒ¼ã‚¯ã‚±ãƒ¼ã‚¹ã®ã‚³ãƒ¼ãƒ‰æ›¸ãã¨ãã«å‰²ã¨ä¾¿åˆ©
-vkE2::+vkE2                       ;å³ä¸‹ã®\ã‚­ãƒ¼ = ã‚¢ãƒ³ãƒ€ãƒ¼ãƒãƒ¼
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼“å¼¾ ã‚¹ã‚¯ãƒªãƒ—ãƒˆé–¢é€£
+;  ‘æ‚Q’e •¶š—ñ‘€ìŠÖ˜A
 ;------------------------------------------------------------------------------
 
-; ã ã‚“ã ã‚“ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ç·¨é›†ãƒ»ãƒ­ãƒ¼ãƒ‰ã‚’ã“ã¾ã‚ã«ã‚„ã‚ŠãŸããªã£ã¦ãã‚‹ã®ã§è¿½åŠ 
+; BS‚Æ‚©Del‚ğŠ„‚è“–‚Ä‚Ä‚¢‚½‚ª‚ ‚ñ‚Ü‚èg‚í‚È‚©‚Á‚½‚Ì‚Åˆê’UíœB
+; ‚»‚Ì“à•œŠˆ‚³‚¹‚é‚©‚à
 
-; Reloadã®R
-vk1D & R::Reload                ;ç„¡å¤‰æ› + R = ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰
-;^+R::Reload                ;ç„¡å¤‰æ› + R = ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒªãƒ­ãƒ¼ãƒ‰
+; \‚ª‘Å‚¿‚½‚¢‚Æ‚«‚Í‰Eã‚ğg‚¤
+; ƒXƒl[ƒNƒP[ƒX‚ÌƒR[ƒh‘‚­‚Æ‚«‚ÉŠ„‚Æ•Ö—˜
+vkE2::+vkE2                       ;‰E‰º‚Ì\ƒL[ = ƒAƒ“ƒ_[ƒo[
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼”å¼¾ ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«é–¢é€£
+;  ‘æ‚R’e ƒXƒNƒŠƒvƒgŠÖ˜A
 ;------------------------------------------------------------------------------
 
-; FPSã§ã‚ˆãä½¿ã†WASDã‚­ãƒ¼ã‚’ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã®ç§»å‹•ã«ä½¿ã†
-; å¤‰æ› + WASD = ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ä¸Š, å·¦, ä¸‹, å³
+; ‚¾‚ñ‚¾‚ñƒXƒNƒŠƒvƒg‚Ì•ÒWEƒ[ƒh‚ğ‚±‚Ü‚ß‚É‚â‚è‚½‚­‚È‚Á‚Ä‚­‚é‚Ì‚Å’Ç‰Á
+
+; Reload‚ÌR
+vk1D & R::Reload                ;–³•ÏŠ· + R = ƒXƒNƒŠƒvƒg‚ÌƒŠƒ[ƒh
+;^+R::Reload                ;–³•ÏŠ· + R = ƒXƒNƒŠƒvƒg‚ÌƒŠƒ[ƒh
+
+;------------------------------------------------------------------------------
+;  ‘æ‚S’e ƒ}ƒEƒXƒJ[ƒ\ƒ‹ŠÖ˜A
+;------------------------------------------------------------------------------
+
+; FPS‚Å‚æ‚­g‚¤WASDƒL[‚ğƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ÌˆÚ“®‚Ég‚¤
+; •ÏŠ· + WASD = ƒ}ƒEƒXƒJ[ƒ\ƒ‹ã, ¶, ‰º, ‰E
 vk1D & W::
 vk1D & A::
 vk1D & S::
 vk1D & D::
-    While (GetKeyState("vk1D", "P"))           ;å¼ã‚’è©•ä¾¡ã—ãŸçµæœãŒçœŸã§ã‚ã‚‹é–“ã€ä¸€é€£ã®å‡¦ç†ã‚’ç¹°ã‚Šè¿”ã—å®Ÿè¡Œã™ã‚‹
+    While (GetKeyState("vk1D", "P"))           ;®‚ğ•]‰¿‚µ‚½Œ‹‰Ê‚ª^‚Å‚ ‚éŠÔAˆê˜A‚Ìˆ—‚ğŒJ‚è•Ô‚µÀs‚·‚é
     {
         MoveX := 0, MoveY := 0
-        MoveY += GetKeyState("W", "P") ? -7 : 0    ;GetKeyState() ã¨ ?:æ¼”ç®—å­(æ¡ä»¶) (ä¸‰é …æ¼”ç®—å­) ã®çµ„ã¿åˆã‚ã›
+        MoveY += GetKeyState("W", "P") ? -7 : 0    ;GetKeyState() ‚Æ ?:‰‰Zq(ğŒ) (O€‰‰Zq) ‚Ì‘g‚İ‡‚í‚¹
         MoveX += GetKeyState("A", "P") ? -7 : 0
         MoveY += GetKeyState("S", "P") ? 7 : 0
         MoveX += GetKeyState("D", "P") ? 7 : 0
-        MouseMove, %MoveX%, %MoveY%, 1, R           ;ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç§»å‹•ã™ã‚‹
-        Sleep, 10                                    ;è² è·ãŒé«˜ã„å ´åˆã¯è¨­å®šã‚’å¤‰æ›´ è¨­å®šã§ãã‚‹å€¤ã¯-1ã€0ã€10ï½mç§’ è©³ç´°ã¯Sleep
+        MouseMove, %MoveX%, %MoveY%, 1, R           ;ƒ}ƒEƒXƒJ[ƒ\ƒ‹‚ğˆÚ“®‚·‚é
+        Sleep, 10                                    ;•‰‰×‚ª‚‚¢ê‡‚Íİ’è‚ğ•ÏX İ’è‚Å‚«‚é’l‚Í-1A0A10`m•b Ú×‚ÍSleep
     }
     Return
 
-; å¤‰æ› + Enter = å·¦ã‚¯ãƒªãƒƒã‚¯ï¼ˆæŠ¼ã—ç¶šã‘ã‚‹ã¨ãƒ‰ãƒ©ãƒƒã‚°ï¼‰
+; •ÏŠ· + Enter = ¶ƒNƒŠƒbƒNi‰Ÿ‚µ‘±‚¯‚é‚Æƒhƒ‰ƒbƒOj
 vk1D & Shift::MouseClick,left,,,,,D
 vk1D & Shift Up::MouseClick,left,,,,,U
 
-; FPSã£ã½ã„ã‚­ãƒ¼é…ç½®ã§ã€WASDã®éš£ã«ã‚¯ãƒªãƒƒã‚¯ãƒœã‚¿ãƒ³ã‚’ç½®ã
-vk1D & Q::MouseClick,left                      ; å¤‰æ› + E = å·¦ã‚¯ãƒªãƒƒã‚¯
-vk1D & E::MouseClick,right                     ; å¤‰æ› + F = å³ã‚¯ãƒªãƒƒã‚¯
+; FPS‚Á‚Û‚¢ƒL[”z’u‚ÅAWASD‚Ì—×‚ÉƒNƒŠƒbƒNƒ{ƒ^ƒ“‚ğ’u‚­
+vk1D & Q::MouseClick,left                      ; •ÏŠ· + E = ¶ƒNƒŠƒbƒN
+vk1D & E::MouseClick,right                     ; •ÏŠ· + F = ‰EƒNƒŠƒbƒN
 
-; ä¸Šè¨˜ã®ç§»å‹•ã‚­ãƒ¼ã ã‘ã ã¨é ã™ãã‚‹ã“ã¨ãŒå¤šã„
-; ä¸€åº¦ã«å¤§ããç§»å‹•ã•ã›ã‚‹ã‚­ãƒ¼ã‚’åˆ¥é€”å‰²ã‚Šå½“ã¦ã¦ãŠã
-; å¤‰æ› + IJKL = ãƒã‚¦ã‚¹ã‚«ãƒ¼ã‚½ãƒ«ä¸Š, å·¦, ä¸‹, å³
-; Jã‚­ãƒ¼ã‚’ãƒ™ãƒ¼ã‚¹ã«çŸ¢å°ã‚­ãƒ¼ã¨åŒã˜é…ç½®ã€‚WASDã‚­ãƒ¼ã¨åˆã‚ã›ã‚‹
+; ã‹L‚ÌˆÚ“®ƒL[‚¾‚¯‚¾‚Æ‰“‚·‚¬‚é‚±‚Æ‚ª‘½‚¢
+; ˆê“x‚É‘å‚«‚­ˆÚ“®‚³‚¹‚éƒL[‚ğ•Ê“rŠ„‚è“–‚Ä‚Ä‚¨‚­
+; •ÏŠ· + IJKL = ƒ}ƒEƒXƒJ[ƒ\ƒ‹ã, ¶, ‰º, ‰E
+; JƒL[‚ğƒx[ƒX‚É–îˆóƒL[‚Æ“¯‚¶”z’uBWASDƒL[‚Æ‡‚í‚¹‚é
 vk1C & W::MouseMove, 0, -220, 0, R
 vk1C & A::MouseMove, -220, 0, 0, R
 vk1C & S::MouseMove, 0, 220, 0, R
 vk1C & D::MouseMove, 220, 0, 0, R
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼•å¼¾ YYWé–¢é€£ ã‚¢ãƒ—ãƒªã®èµ·å‹•
+;  ‘æ‚T’e YYWŠÖ˜A ƒAƒvƒŠ‚Ì‹N“®
 ;------------------------------------------------------------------------------
 
 ;Ctrl + Shift + C
 ^+C::
-if WinExist("ç„¡é¡Œ - ãƒ¡ãƒ¢å¸³")
+if WinExist("–³‘è - ƒƒ‚’ ")
     WinActivate
 else
     Run, "C:\WINDOWS\system32\notepad.exe"
@@ -129,20 +129,23 @@ Return
 
 ; Ctrl + Shift + E
 ^+E::
-if WinExist("(ç„¡é¡Œ)1 - sakura 2.2.0.1")
+if WinExist("(–³‘è)1 - sakura 2.2.0.1")
     WinActivate
 else
-    Run, C:\Program Files (x86)\sakura\sakura.exe
+    if WinExist("(–³‘è)1(XV) - sakura 2.2.0.1")
+        WinActivate
+    else
+        Run, C:\Program Files (x86)\sakura\sakura.exe
 Return
 
 
 ;Ctrl + Shift + Q
 ^+Q::
-Run, "C:\yyw\300_software\sqldeveloperX64\sqldeveloper.exe"
+Run, "C:\yyw\300_Ref\300_software\sqldeveloperX64\sqldeveloper.exe"
 Return
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼•å¼¾ YYWé–¢é€£ã€€IE
+;  ‘æ‚T’e YYWŠÖ˜A@IE
 ;------------------------------------------------------------------------------
 ; Shift + Alt + M
 !+M::
@@ -150,22 +153,25 @@ Return
 Run, https://26.131.131.11/
 return
 
+; Shift + Alt + G
+!+G::
+Run,"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" http://26.131.131.1/gitbucket/ -private
+;Run, https://26.131.131.11/
+return
 
-vk1D & g::                                      ;Win+Gã‚­ãƒ¼ã«å‰²ã‚Šå½“ã¦
-ClipSaved = %ClipboardAll%                      ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
-Clipboard =                                     ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢
-Send,^c                                         ;Ctrl+Cã‚­ãƒ¼ã‚’é€ä¿¡
-ClipWait                                        ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ
-Run,https://translate.google.co.jp/?hl=ja&text=%Clipboard%  ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’æ¤œç´¢ã™ã‚‹Googleã®URLã‚’é–‹ã
-Clipboard = %ClipSaved%                                ;ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸå†…å®¹ã‚’æ›¸ãæˆ»ã—
+
+vk1D & g::                                      ;Win+GƒL[‚ÉŠ„‚è“–‚Ä
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait                                        ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
+Run,https://translate.google.co.jp/?hl=ja&text=%Clipboard%  ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğŒŸõ‚·‚éGoogle‚ÌURL‚ğŠJ‚­
+Clipboard = %ClipSaved%                                ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
 return
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼–å¼¾ YYWé–¢é€£ã€€å…¥åŠ›
+;  ‘æX’e YYWŠÖ˜A@Ì«ÙÀŞµ°Ìßİ
 ;------------------------------------------------------------------------------
-;:*:btw::by the way {Tab} bbb {Enter}  ; Replaces "btw" with "by the way" without needing an ending character.
-::-sf::SELECT if.* {Enter}FROM XXAE_CARD_ACCTG_LOG_IF if {Enter}WHERE if.RECV_DATE = '' {Enter}AND if.RESERVE_CTRL2 = '';  
-
 
 :*:@wk::
 Run, "C:\yyw\500_Person\500_work"
@@ -176,32 +182,12 @@ Run, "C:\yyw"
 return
 
 
-:*:!sd::
-;FormatTime, CurrentDateTime,, yyyy/MM/dd hh:mm:ss
-FormatTime, CurrentDate,, yyyy/MM/dd
-SendInput %CurrentDate%
-return
+;------------------------------------------------------------------------------
+;  ‘æX’e YYWŠÖ˜A@“ü—Í
+;------------------------------------------------------------------------------
+;:*:btw::by the way {Tab} bbb {Enter}  ; Replaces "btw" with "by the way" without needing an ending character.
+::-sf::SELECT if.* {Enter}FROM XXAE_CARD_ACCTG_LOG_IF if {Enter}WHERE if.RECV_DATE = '' {Enter}AND if.RESERVE_CTRL2 = '';  
 
-:*:!bsd:: 
-FormatTime, CurrentDate,, yyyy/MM/dd
-SendInput _bk%CurrentDate%
-return
-
-
-:*:!yyw::
-SendInput TISæ¥Š
-return
-
-:*:!plg::
-SendInput DBMS_OUTPUT.PUT_LINE('Sqlerrm.......' || SQLERRM);
-return
-
-
-:*:!kuro::
-SendInput TIKK68559{Tab}
-Sleep, 1000
-SendInput Welcome1{Tab}
-return
 
 :*:!psm::
 SendInput you.ai{Tab}password1{Tab}
@@ -223,29 +209,166 @@ else
 }
 return
 
-:*:!csvn::
+
+
+:*:!sd::
+;FormatTime, CurrentDateTime,, yyyy/MM/dd hh:mm:ss
+FormatTime, CurrentDate,, yyyy/MM/dd
+SendInput %CurrentDate%
+return
+
+:*:!bsd:: 
+FormatTime, CurrentDate,, yyyy/MM/dd
+SendInput _bk%CurrentDate%
+return
+
+
+:*:!yyw::
+SendInput TIS—k
+return
+
+
+:*:!sf::
 value := RegExReplace(clipboard, "[`r`n`t]+$")
 if value =
 {
-    SendInput [æ©Ÿèƒ½ä¿®æ­£]XXXXXXXXã®è¿½åŠ {Enter}{Enter}XXXXã«XXã®XXXXã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚{Tab}
+    SendInput SELECT * FROM XXXXX WHERE ROWNUM < 100
 }
 else
 {
-    SendInput [æ©Ÿèƒ½ä¿®æ­£]%Clipboard%ã®è¿½åŠ {Enter}{Enter}XXXXã«%Clipboard%ã‚’è¿½åŠ ã—ã¾ã—ãŸã€‚{Tab}
+    Clipboard := RegExReplace(Clipboard, "\t", "")
+    Clipboard := RegExReplace(Clipboard, "\r\n", "")
+    SendInput SELECT * FROM %Clipboard% WHERE ROWNUM < 100
 }
+return
+
+:*:!df::
+value := RegExReplace(clipboard, "[`r`n`t]+$")
+if value =
+{
+    SendInput DELETE FROM XXXXX WHERE 1=2
+}
+else
+{
+    Clipboard := RegExReplace(Clipboard, "\t", "")
+    Clipboard := RegExReplace(Clipboard, "\r\n", "")
+    SendInput DELETE FROM %Clipboard% WHERE 1=2
+}
+return
+
+
+;------------------------------------------------------------------------------
+;  ‘æX’e YYWŠÖ˜A@•¶š—ñ‚Ì’u‚«Š·‚¦ QlƒGƒŠƒA
+
+;:*:!plg::
+SendInput DBMS_OUTPUT.PUT_LINE('Sqlerrm.......' || SQLERRM);
+return
+
+;:*:!kuro::
+SendInput TIKK68559{Tab}
+Sleep, 1000
+SendInput Welcome1{Tab}
+return
+
+;:*:!csvn::
+value := RegExReplace(clipboard, "[`r`n`t]+$")
+if value =
+{
+    SendInput [‹@”\C³]XXXXXXXX‚Ì’Ç‰Á{Enter}{Enter}XXXX‚ÉXX‚ÌXXXX‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B{Tab}
+}
+else
+{
+    SendInput [‹@”\C³]%Clipboard%‚Ì’Ç‰Á{Enter}{Enter}XXXX‚É%Clipboard%‚ğ’Ç‰Á‚µ‚Ü‚µ‚½B{Tab}
+}
+return
+;------------------------------------------------------------------------------
+
+
+;------------------------------------------------------------------------------
+;  ‘æX’e YYWŠÖ˜A@•¶š—ñ‚Ì’u‚«Š·‚¦
+;------------------------------------------------------------------------------
+
+;–³•ÏŠ· + 1
+vk1D & 1::
+
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait 1                                      ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
+if (ErrorLevel)  ; ClipWait timed out.
+{
+    msgbox ClipWait timed out.
+    return
+}
+
+Clipboard := RegExReplace(Clipboard, "\t", "")
+Clipboard := RegExReplace(Clipboard, "\r\n", "")
+Clipboard := RegExReplace(Clipboard, "ooh", "ó’ƒwƒbƒ_")
+Clipboard := RegExReplace(Clipboard, "ool", "ó’–¾×")
+
+SendInput %Clipboard%
+Clipboard = %ClipSaved%                          ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
+
 return
 
 
 
 
-;------------------------------------------------------------------------------
-;  ç¬¬ï¼—å¼¾ YYWé–¢é€£ã€€æ–‡å­—åˆ—ã®ç½®ãæ›ãˆ
-;------------------------------------------------------------------------------
+;-------------------------------------–¢—˜—p’†-----------
+
+;–³•ÏŠ· + N
+vk1D & N::
+Clipboard = %ClipboardAll%
+Clipboard := RegExReplace(Clipboard, "\t", "")
+Clipboard := RegExReplace(Clipboard, "\r\n", "")
+SendInput u%Clipboard%v‚ªİ’è‚³‚ê‚é
+return
 
 
 
-;ç„¡å¤‰æ› + F
+;–³•ÏŠ· + T
+;vk1D & T::
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait 1                                      ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
+if (ErrorLevel)  ; ClipWait timed out.
+{
+    msgbox ClipWait timed out.
+    return
+}
+Clipboard := RegExReplace(Clipboard, "\t", "")
+Clipboard := RegExReplace(Clipboard, "\r\n", "")
+SendInput u%Clipboard%v‚ªİ’è‚³‚ê‚é
+
+Clipboard = %ClipSaved%                          ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
+
+return
+
+
+
+;–³•ÏŠ· + F
 vk1D & F::
+
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait 1                                      ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
+if (ErrorLevel)  ; ClipWait timed out.
+{
+    msgbox ClipWait timed out.
+    return
+}
+
+;Clipboard := RegExReplace(Clipboard, "\t", "(") ")"
+Clipboard := RegExReplace(Clipboard, "\r\n", "")
+Clipboard := "--" Clipboard
+
+return
+
+
+
+;–³•ÏŠ· + F
+;vk1D & F::
 
 strReplaceFrom := "AA"
 strReplaceTo   := ""
@@ -255,10 +378,10 @@ blDelSpace     := false
 blDelTab       := true
 blDelEnter     := true
 
-ClipSaved = %ClipboardAll%                      ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
-Clipboard =                                     ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢
-Send,^c                                         ;Ctrl+Cã‚­ãƒ¼ã‚’é€ä¿¡
-ClipWait 1                                      ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait 1                                      ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
 if (ErrorLevel)  ; ClipWait timed out.
 {
     msgbox ClipWait timed out.
@@ -280,44 +403,44 @@ if (blDelEnter)
 
 ;Clipboard := RegExReplace(Clipboard, %strReplaceFrom%, %strReplaceTo%)
 
-; ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰å†…ã®ãƒ†ã‚­ã‚¹ãƒˆ'ABC'ã‚’'DEF'ã«ç½®æ›ã—ã€ãƒ—ãƒ¬ãƒ¼ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã«å¤‰æ›ã™ã‚‹
+; ƒNƒŠƒbƒvƒ{[ƒh“à‚ÌƒeƒLƒXƒg'ABC'‚ğ'DEF'‚É’uŠ·‚µAƒvƒŒ[ƒ“ƒeƒLƒXƒg‚É•ÏŠ·‚·‚é
 StringReplace, clipboard, clipboard, %strReplaceFrom%, %strReplaceTo% , All
 
 
 SendInput %Clipboard%
-Clipboard = %ClipSaved%                          ;ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸå†…å®¹ã‚’æ›¸ãæˆ»ã—
+Clipboard = %ClipSaved%                          ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
 
 return
 
 
 
 ;------------------------------------------------------------------------------
-;  ç¬¬ï¼—å¼¾ YYWé–¢é€£ã€€ãƒ†ã‚¹ãƒˆã‚¨ãƒªã‚¢
+;  ‘æX’e YYWŠÖ˜A@ƒeƒXƒgƒGƒŠƒA
 ;------------------------------------------------------------------------------
 
 
-vk1D & 1::
-ClipSaved = %ClipboardAll%                      ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
-Clipboard =                                     ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢
-Send,^c                                         ;Ctrl+Cã‚­ãƒ¼ã‚’é€ä¿¡
-ClipWait                                        ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ
+;vk1D & 1::
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait                                        ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
 ;clipboard := RegExMatch(clipboard, "(?<=t=).+$", "DEF") 
 ;clipboard := RegExMatch(clipboard, "(?<=m=).+$", "DEF") 
 ;RegExMatch(clipboard, "(?<=t=).+$",SetTgt)
-Run,http://phi-jp.github.io/tm-regetor/#i=(?<=m=).+$&t=%Clipboard%  ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’æ¤œç´¢ã™ã‚‹Googleã®URLã‚’é–‹ã
-Clipboard = %ClipSaved%                                ;ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸå†…å®¹ã‚’æ›¸ãæˆ»ã—
+Run,http://phi-jp.github.io/tm-regetor/#i=(?<=m=).+$&t=%Clipboard%  ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğŒŸõ‚·‚éGoogle‚ÌURL‚ğŠJ‚­
+Clipboard = %ClipSaved%                                ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
 return
 
 
 vk1D & 2::
-ClipSaved = %ClipboardAll%                      ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã®å†…å®¹ã‚’ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
-Clipboard =                                     ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã‚’ã‚¯ãƒªã‚¢
-Send,^c                                         ;Ctrl+Cã‚­ãƒ¼ã‚’é€ä¿¡
-ClipWait                                        ;ã‚¯ãƒªãƒƒãƒ—ãƒœãƒ¼ãƒ‰ã«ãƒ†ã‚­ã‚¹ãƒˆãŒæ ¼ç´ã•ã‚Œã‚‹ã¾ã§å¾…æ©Ÿ
-;StringReplace, clipboard, clipboard, ABC, DEF, All   ; æŠŠå‰ª?æ¿ä¸­æ‰€æœ‰ ABC æ›¿?? DEF (åŒ?æŠŠå‰ª?æ¿çš„å†…å®¹????æ–‡æœ¬)
+ClipSaved = %ClipboardAll%                      ;ƒNƒŠƒbƒvƒ{[ƒh‚Ì“à—e‚ğƒoƒbƒNƒAƒbƒv
+Clipboard =                                     ;ƒNƒŠƒbƒvƒ{[ƒh‚ğƒNƒŠƒA
+Send,^c                                         ;Ctrl+CƒL[‚ğ‘—M
+ClipWait                                        ;ƒNƒŠƒbƒvƒ{[ƒh‚ÉƒeƒLƒXƒg‚ªŠi”[‚³‚ê‚é‚Ü‚Å‘Ò‹@
+;StringReplace, clipboard, clipboard, ABC, DEF, All   ; ”c™’?”Â’†Š—L ABC ‘Ö?? DEF (“¯?”c™’?”Â“I“à—e????•¶–{)
 clipboard := RegExReplace(clipboard, "ABC", "DEF") 
 msgbox, %clipboard%
-Clipboard = %ClipSaved%                                ;ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ãŸå†…å®¹ã‚’æ›¸ãæˆ»ã—
+Clipboard = %ClipSaved%                                ;ƒoƒbƒNƒAƒbƒv‚µ‚½“à—e‚ğ‘‚«–ß‚µ
 return
 
 vk1D & 3::
@@ -325,7 +448,7 @@ RegExMatch("abcXYZ123FKK123", "abc(.*)123(.*)", SubPat)
 msgbox, %SubPat1%
 return
 
-vk1D & c::
+;vk1D & c::
 ;FormatTime, TimeString,, yyyy/MM/dd
 MsgBox %A_YEAR%/%A_MM%/%A_DD%
 return
@@ -338,4 +461,18 @@ if (%Clipboard% =) {
 } else {
     msgbox, test222
 }
+return
+
+
+vk1D & 4::
+Run, C:\yyw\500_Person\200_tools\test.ahk  /run /tn Skyltprogram,, MAX, My_PID 
+msgbox, %My_PID%
+return
+
+
+vk1D & 5::
+msgbox, start222 %My_PID%
+ifWinExist ahk_pid %My_PID%
+    Process, Close, %My_PID%
+msgbox, %LabelPID%
 return
