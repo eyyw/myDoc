@@ -1,15 +1,35 @@
 echo off
 
-rem SET PATH_SEV_QA=Z:\01.æˆæžœç‰©\21.å¤–éƒ¨è¨­è¨ˆ\QA\
-SET PATH_SEV_QA=\\26.131.131.1\pj_share\20_Factå±•é–‹ï¼ˆä¸€èˆ¬ãƒ¡ã‚¿ãƒ«ï¼‰\01.æˆæžœç‰©\21.å¤–éƒ¨è¨­è¨ˆ\QA\
-SET FILE_QA=QAä¸€è¦§v3.xlsx
+REM FILE_1 = ÝŒvQA
+SET FILE_PATH_1=\\26.131.131.1\pj_share\20_Fact“WŠJiˆê”Êƒƒ^ƒ‹j\01.¬‰Ê•¨\21.ŠO•”ÝŒv\QA\
+SET FILE_NAME_1=QAˆê——v3.xlsx
+
+REM FILE_2 = ŠJ”­QA
+SET FILE_PATH_2=\\26.131.131.1\pj_share\20_Fact“WŠJiˆê”Êƒƒ^ƒ‹j\01.¬‰Ê•¨\23.ŠJ”­\QA\
+SET FILE_NAME_2=QAˆê——.xlsx
+
+REM FILE_3 = ÝŒvƒŒƒrƒ…[
+SET FILE_PATH_3=\\26.131.131.1\pj_share\20_Fact“WŠJiˆê”Êƒƒ^ƒ‹j\01.¬‰Ê•¨\21.ŠO•”ÝŒv\ÝŒvƒŒƒrƒ…[\
+SET FILE_NAME_3=ÚËÞ­°‹L˜^_ˆê”Êƒƒ^ƒ‹_ŠO•”ÝŒv.xlsx
+
+REM FILE_4 = ƒvƒƒWƒFƒNƒgŠÇ—
+SET FILE_PATH_4=\\26.131.131.1\pj_share\20_Fact“WŠJiˆê”Êƒƒ^ƒ‹j\99.WORK\you\20190704_ŠJ”­ŠÖ˜AŽ‘—¿\
+SET FILE_NAME_4=Gitã‚ÌƒvƒƒWƒFƒNƒgŠÇ—.xlsx
+
+REM FILE_5 = Žó“ü•s‹ï‡
+SET FILE_PATH_5=\\26.131.131.1\pj_share\20_Fact“WŠJiˆê”Êƒƒ^ƒ‹j\01.¬‰Ê•¨\22.ƒeƒXƒg\01.’P‘ÌƒeƒXƒg\02.’P‘ÌƒeƒXƒgiƒIƒtƒVƒ‡ƒAj\
+SET FILE_NAME_5=ƒIƒtƒVƒ‡ƒA_ƒeƒXƒgŒ‹‰Ê(•s‹ï‡•[iˆê——j(1.0.6).xls
+
+
 
 SET PATH_LOC_WK=C:\yyw\500_Person\500_work\
 
-rem copy /Y %PATH_SEV_QA%%FILE_QA% %PATH_LOC_WK%
-call :startCopy %PATH_SEV_QA% %PATH_LOC_WK% %FILE_QA%
+call :startCopy %FILE_PATH_1% %PATH_LOC_WK% %FILE_NAME_1%
+call :startCopy %FILE_PATH_2% %PATH_LOC_WK% %FILE_NAME_2%
+call :startCopy %FILE_PATH_3% %PATH_LOC_WK% %FILE_NAME_3%
+call :startCopy %FILE_PATH_4% %PATH_LOC_WK% %FILE_NAME_4%
+call :startCopy %FILE_PATH_5% %PATH_LOC_WK% %FILE_NAME_5%
 
-rem msg * /server:localhost [%FILE_QA%]ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ”ãƒ¼ãŒå®Œäº†ã—ã¾ã—ãŸã€‚
 
 pause
 
@@ -18,8 +38,13 @@ goto :EOF
 
 rem %1=cp_path_from,%2=cp_path_to,%3=cp_file_nm
 :startCopy
-  echo [%3]ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼ä¸­ã€‚
+  echo copy %1%3 %2
   copy /Y %1%3 %2
+  rem if errorlevel 0 echo [%3]ƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚ªŠ®—¹‚µ‚Ü‚µ‚½B
+  rem if errorlevel 1 echo [%3]ƒtƒ@ƒCƒ‹Œ©‚Â‚©‚è‚Ü‚¹‚ñB
+  rem if errorlevel 2 echo Ctrl-C‚Å[%3]ƒtƒ@ƒCƒ‹‚ÌƒRƒs[‚ª’†Ž~‚µ‚Ü‚µ‚½B
+  rem if errorlevel 4 echo [%3]—\‘zŠOƒGƒ‰[‚ÅƒRƒs[‚ª’†Ž~‚µ‚Ü‚µ‚½B
+  rem if errorlevel 5 echo [%3]hard disk witring errorB
   goto :EOF
 
 
