@@ -1,0 +1,51 @@
+SET SERVEROUTPUT ON 
+DECLARE
+
+  gv_step VARCHAR2(1000);
+  gv_nbr  NUMBER;
+  gb_rtn_flag BOOLEAN := TRUE;
+  --[Create or replace] Type typeName is varray( arraySize1 ) of DataType NOT NULL;
+  TYPE tArray IS VARRAY(100) OF VARCHAR2(32767) NOT NULL;
+  gt_Array tArray := tArray();
+
+PROCEDURE print_list(it_arr IN tArray)
+IS
+BEGIN
+  dbms_output.put_line( 'Count : ' || it_arr.count );
+  if it_arr.count > 0 then
+    for i in 1..it_arr.count loop
+      dbms_output.put_line( it_arr(i) );
+    end loop;
+  else
+    gb_rtn_flag := FALSE;
+  end if;
+END;
+
+FUNCTION func_conv(
+  ip_vc_var1 IN VARCHAR2,
+  op_vc_var2 OUT VARCHAR2)
+RETURN NUMBER
+IS
+BEGIN
+  op_vc_var2:=upper(ip_vc_var1);
+  RETURN LENGTH(ip_vc_var1);
+END;
+
+  BEGIN
+  
+    gt_Array.extend(6);
+    gt_Array('1.5') := '1234'; -- OK (=2)
+    gt_Array('2.5') := '4321'; -- OK (=2)
+    IF NOT gt_Array.EXISTS('2.5') THEN
+      gt_Array('2.5') := 'aaaa'; -- OK (=2)
+    ELSE
+      gt_Array('2.5') := 'bbbb'; -- OK (=2)
+    END IF;
+    print_list(gt_Array);
+    gt_Array.DELETE;
+    
+  EXCEPTION
+    WHEN OTHERS THEN
+      DBMS_OUTPUT.put_line('OTHERS-ERR: ' || DBMS_UTILITY.format_error_stack);
+            
+END;
