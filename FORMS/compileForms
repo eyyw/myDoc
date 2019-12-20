@@ -1,0 +1,119 @@
+;=====================================================================
+; 接続情報
+username = 'ユーザ名'
+password = 'パスワード'
+hostname = 'ホストネーム'
+title = 'Webサーバ'
+;=====================================================================
+;=====================================================================
+; プログラム情報
+targetForm = 'XXFN471F'
+targetFormFmb = targetForm
+strconcat targetFormFmb '.fmb'
+targetFormFmx = targetForm
+strconcat targetFormFmx '.fmx'
+
+SOURFILE = 'C:\yyw\500_Person\500_work\20191119_EBS\6_職責管理の追加開発\MD110(ソース)\'
+strconcat SOURFILE targetFormFmb
+DESTFILE = '/pj2/smm02/pp/R12/apps/apps_st/appl/xxau/12.0.0/forms/JA/'
+strconcat DESTFILE targetFormFmb
+;=====================================================================
+
+; コマンドオプション組立て
+msg = hostname
+strconcat msg ':22 /ssh /2 /auth=password /user='
+strconcat msg username
+strconcat msg ' /passwd='
+strconcat msg password
+
+;==■接続と判定=================================
+; 2.TeraTermでサーバーにログイン
+connect msg
+
+;; 接続判定1（接続出来ない場合はメッセージを表示しマクロ終了）
+if result <> 2 then
+    messagebox 'It could not be connected.' 'Connection Error'
+    end
+endif;
+
+timeout = 5
+;; 接続判定2（接続して10秒以内にプロンプトが表示されない場合もマクロ終了）
+wait '>' '$' '#'
+if result = 0 then
+    end
+endif
+
+settitle title
+;===============================================
+
+; 3.環境変数のロード
+sendln '. /pj2/smm02/pp/R12/apps/apps_st/appl/APPSsmm02_srv043.env'
+
+
+; 5.fmbファイルの格納場所へ移動
+wait '>' '$' '#'
+sendln 'cd /pj2/smm02/pp/R12/apps/apps_st/appl/xxau/12.0.0/forms/JA'
+
+; 6.fmbファイルの送信
+scpsend SOURFILE DESTFILE
+;; ファイル送信プロセス確認
+do
+  mpause 3000
+  sprintf2 str 'ps -ef |grep -v grep |grep -c scp'
+  sendln str
+  waitln '0' '1'
+loop while result != 1
+;; ファイル送信が完了すると次のマクロを実行
+sendln 'echo SCP finish'
+
+; 6.コンパイルコマンドの実行
+wait '>' '$' '#'
+;frmcmp_batch Module=XXFN471F.fmb Userid=apps/apps Module_Type=FORM Output_File=/pj2/smm02/pp/R12/apps/apps_st/appl/xxfn/12.0.0/forms/JA/XXFN471F.fmx compile_all=special
+compile = 'frmcmp_batch Module='
+strconcat compile targetFormFmb
+strconcat compile ' Userid=apps/apps Module_Type=FORM Output_File=/pj2/smm02/pp/R12/apps/apps_st/appl/xxfn/12.0.0/forms/JA/'
+strconcat compile targetFormFmx
+strconcat compile ' compile_all=special'
+sendln compile
+
+;マクロ終了 
+wait '>' '$' '#'
+sendln 'exit'
+end
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;; 4.ファイルの存在チェック
+;;;;;;;;;;;;;;;;;;;wait '$'
+;;;;;;;;;;;;;;;;;;;sendln 'cd /pj2/smm02/pp/R12/apps/apps_st/appl/xxfn/12.0.0/forms/JA'
+;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;wait '$'
+;;;;;;;;;;;;;;;;;;;ckForm = targetForm
+;;;;;;;;;;;;;;;;;;;strconcat ckForm '.fmx'
+;;;;;;;;;;;;;;;;;;;size = 0
+;;;;;;;;;;;;;;;;;;;filestat 'XXFN471FXXX.fmx' size
+;;;;;;;;;;;;;;;;;;;if -1 = result then
+;;;;;;;;;;;;;;;;;;;    messagebox 'ファイルが存在しない' size
+;;;;;;;;;;;;;;;;;;;elseif result == 0 && size == 0 then
+;;;;;;;;;;;;;;;;;;;    messagebox 'ディレクトリです' size
+;;;;;;;;;;;;;;;;;;;else
+;;;;;;;;;;;;;;;;;;;    messagebox 'ファイルが存在します' size
+;;;;;;;;;;;;;;;;;;;endif
+;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;elseif 0 = result then
+;;;;;;;;;;;;;;;;;;;;    messagebox 'ファイルが存在する' 'ファイルが存在する'
+;;;;;;;;;;;;;;;;;;;;    bkForm = targetForm
+;;;;;;;;;;;;;;;;;;;;    getdate DATE '_%Y%m%d_%H%M%S_bk'
+;;;;;;;;;;;;;;;;;;;;    strconcat bkForm DATE
+;;;;;;;;;;;;;;;;;;;;    strconcat bkForm '.fmx'
+;;;;;;;;;;;;;;;;;;;;    
+;;;;;;;;;;;;;;;;;;;;    filerename ckForm bkForm
+;;;;;;;;;;;;;;;;;;;;endif
