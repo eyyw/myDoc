@@ -1,6 +1,9 @@
 echo off
-setlocal enabledelayedexpansion 
+setlocal enabledelayedexpansion
 
+set switch="FACT"
+
+if %switch% == "STK" (
 set  wkFile01[0]="\\26.43.131.1\public\2_MISSION開発\6_職責管理の追加開発\仕様検討一覧.xlsx"
 set  wkFile01[1]="\\26.43.131.1\public\2_MISSION開発\0_計画\工数管理.xlsx"
 set  wkFile01[2]="\\26.43.131.1\public\2_MISSION開発\6_職責管理の追加開発\職責管理_レビュー記録表.xlsx"
@@ -13,9 +16,11 @@ set  wkFile01[8]=""
 set  wkFile01[9]=""
 set wkFile01[10]=""
 set PATH_LOC_WK_01=C:\yyw\500_Person\500_work\20191119_EBS\6_職責管理の追加開発\
+)
 
-set  wkFile02[0]=""
-set  wkFile02[1]=""
+if %switch% == "FACT" (
+set  wkFile02[0]="\\26.131.131.1\pj_share\24_Fact展開\00.Admin\02.PJ管理\02.課題管理\課題一覧.xlsx"
+set  wkFile02[1]="\\26.131.131.1\pj_share\24_Fact展開\00.Admin\02.PJ管理\01.進捗管理\01.外部設計・開発・単体\10.IFバッチ\2019年_開発チーム(領域名)_製造_WBS.xlsm"
 set  wkFile02[2]=""
 set  wkFile02[3]=""
 set  wkFile02[4]=""
@@ -25,7 +30,8 @@ set  wkFile02[7]=""
 set  wkFile02[8]=""
 set  wkFile02[9]=""
 set wkFile02[10]=""
-set PATH_LOC_WK_02=C:\yyw\500_Person\500_work\
+set PATH_LOC_WK_02=C:\yyw\500_Person\500_workIn2020\
+)
 
 REM とりあえず50回ループする
 REM for /l %%f in (0,1,50) do (
